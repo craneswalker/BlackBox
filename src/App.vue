@@ -1,15 +1,14 @@
 <template>
   <div>
-      <link  rel="stylesheet" :href="cdnApi">
-      <Navigation></Navigation>
+      <link  rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+      <Navigation></Navigation> 
       <div class="themePicker d-flex justify-content-center">    
-        <button @click=randomTheme>Change Theme</button>
       </div>
       <div id="app">
-        <router-view :CurrentTasks="tasks" :taskToDone="done"/>
+        <router-view :tasks="tasks" :doneTasks="doneTasks"/>
       </div>
   </div>
-</template>
+</template> 
 
 <script>
 import Navigation from '@/components/Navigation'
@@ -30,39 +29,24 @@ export default {
   data() {
     return {
       tasks:[],
-      done:[],
-      apis:[],
-      cdnApi:"https://bootswatch.com/4/lux/bootstrap.min.css",
+      doneTasks:[]
     }
   },
   mounted() {
     this.loadTasks()
-    this.loadDone()
-    this.loadApi()
+    this.loadDoneTasks()
   },
   methods: {
-    randomTheme() {
-      cdnApi == function randomCDN(apis){
-        math.random(apis.cssmin)
-      } 
-    },
     loadTasks() {
-      fetch("../../static/tasks.json")
+      fetch("../static/tasks.json")
         .then(response => response.json())
         .then(tasks => this.tasks = tasks)
     },
-    loadDone(){
-      fetch("../../static/done.json")
+    loadDoneTasks(){
+      fetch("../static/doneTasks.json")
         .then(response => response.json())
-        .then(done => this.done = done)
+        .then(doneTasks => this.doneTasks = doneTasks)
     },
-    loadApi(){
-      fetch("https://bootswatch.com/api/4.json")
-        .then(response => response.json())
-        .then(apis => this.apis = apis)
-    },
-    taskToDone(task) {
-    }
     }, 
 
 }

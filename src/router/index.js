@@ -8,29 +8,29 @@ import ToDo from '@/components/ToDo';
 Vue.use(Router);
 
 export default new Router({
-    routes: [
-        {
-            path: '/',
-            name: 'Landing',
-            component: Landing,
-        },
-        {
-            path: '/Input',
-            name: 'Input',
-            component: Input,
-            props: true,
-        },
-        {
-            path: '/Done',
-            name: 'Done',
-            component: Done,
-            props: true,
-        },
-        {
-            path: '/ToDo',
-            name: 'ToDo',
-            component: ToDo,
-            props: true,
-        }
-    ],
+  routes: [
+    {
+      path: '/',
+      name: 'Landing',
+      component: Landing,
+    },
+    {
+      path: '/Input',
+      name: 'Input',
+      component: Input,
+      props: true,
+    },
+    {
+      path: '/Done',
+      name: 'Done',
+      component: Done,
+      props: true,
+    },
+    {
+      path: '/ToDo',
+      name: 'ToDo',
+      component: ToDo,
+      props: true,
+    },
+  ],
 });
