@@ -10,9 +10,9 @@
 >This program is currently a proof of concept that is continually getting worked on to bring more functionality.
 >The next steps are to:
 
-⋅⋅⋅*Build a backend so users can save their tasks for later
+>-Build a backend so users can save their tasks for later
 
-⋅⋅⋅*Add options for "Daily/Recurring Tasks", "See Next Task" and "Task Priority" (to determine which tasks get seen first)
+>-Add options for "Daily/Recurring Tasks", "See Next Task" and "Task Priority" (to determine which tasks get seen first)
 
 ## Technologies/Libraries:
 >Vue.js and Bootswatch
