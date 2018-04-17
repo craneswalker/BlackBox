@@ -1,5 +1,5 @@
 # BlackBox
-[Click here to see BlackBox in action](http://right-pickle.surge.sh/#/)
+[Click here to see BlackBox in action](http://black-box-app.surge.sh/#/)
 
 ## The simplest to-do list!
 >Plug in your tasks.
