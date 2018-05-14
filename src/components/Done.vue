@@ -3,9 +3,15 @@
     <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
       <div class="card-body">
         <h4 class="card-title">Here's what you've done!</h4>
-        <div v-if="doneTasks[0]">
-          <ul v-for="doneTask in doneTasks" :key="doneTask.title">
-            <li>{{doneTask.title}}</li>
+        <div v-if="doneTasks.dones[0]">
+          <ul v-for="doneTask in doneTasks.dones" :key="doneTask.id">
+            <div v-if="doneTask.date" >
+              <li>{{doneTask.title}}</li>
+              <li>{{doneTask.date}}</li>
+            </div>
+            <div v-else>
+              <li>{{doneTask.title}}</li>
+            </div>
           </ul>
         </div>
         <div v-else>

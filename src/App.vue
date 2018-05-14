@@ -1,12 +1,10 @@
 <template>
-  <div>
-      <link  rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+  <div v-cloak>
+      <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
       <Navigation></Navigation> 
-      <div class="themePicker d-flex justify-content-center">    
-      </div>
-      <div id="app">
-        <router-view :tasks="tasks" :doneTasks="doneTasks"/>
-      </div>
+      <transition name="fade">
+        <router-view :tasks="tasks" :doneTasks="doneTasks" :loadTasks="loadTasks" :loadDoneTasks="loadDoneTasks"/>
+      </transition>
   </div>
 </template> 
 
@@ -24,7 +22,7 @@ export default {
     Landing,
     Input,
     Done,
-    ToDo,
+    ToDo
   },
   data() {
     return {
@@ -38,19 +36,32 @@ export default {
   },
   methods: {
     loadTasks() {
-      fetch("../static/tasks.json")
+      fetch("https://cors.io/?https://powerful-harbor-21413.herokuapp.com/todo")
         .then(response => response.json())
-        .then(tasks => this.tasks = tasks)
+        .then(response => this.tasks = response)
     },
     loadDoneTasks(){
-      fetch("../static/doneTasks.json")
+      fetch("https://cors.io/?https://powerful-harbor-21413.herokuapp.com/done")
         .then(response => response.json())
-        .then(doneTasks => this.doneTasks = doneTasks)
+        .then(response => this.doneTasks = response)
     },
-    }, 
+  }, 
 
 }
 </script>
 
 <style>
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .25s;
+}
+
+.fade-enter-active {
+  transition-delay: .25s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
+
 </style>
