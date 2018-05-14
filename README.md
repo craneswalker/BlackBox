@@ -1,21 +1,21 @@
-# y
+# BlackBox
+[Click here to see BlackBox in action](http://black-box-app.surge.sh/#/)
 
-> A Vue.js project
+## The simplest to-do list!
+>Plug in your tasks.
+>See ONLY ONE.
+>Get stuff done.
 
-## Build Setup
+## Proof of concept:
+>This program is currently a proof of concept that is continually getting worked on to bring more functionality.
+>The next steps are to:
 
-``` bash
-# install dependencies
-npm install
+>-Build a backend so users can save their tasks for later
 
-# serve with hot reload at localhost:8080
-npm run dev
+>-Add options for "Daily/Recurring Tasks", "See Next Task" and "Task Priority" (to determine which tasks get seen first)
 
-# build for production with minification
-npm run build
+## Technologies/Libraries:
+>Vue.js and Bootswatch
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
