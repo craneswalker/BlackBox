@@ -3,7 +3,7 @@
       <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
       <Navigation></Navigation> 
       <transition name="fade">
-        <router-view :tasks="tasks" :doneTasks="doneTasks" :loadTasks="loadTasks" :loadDoneTasks="loadDoneTasks"/>
+        <router-view :ApiUrl="ApiUrl" />
       </transition>
   </div>
 </template> 
@@ -14,6 +14,12 @@ import Done from '@/components/Done'
 import Landing from '@/components/Landing'
 import Input from '@/components/Input'
 import ToDo from '@/components/ToDo'
+import Edit from '@/components/Edit'
+import TaskAdded from '@/components/status/TaskAdded'
+import TaskUpdated from '@/components/status/TaskUpdated'
+import TaskFinished from '@/components/status/TaskFinished'
+
+
 
 export default {
   name: 'App',
@@ -22,31 +28,17 @@ export default {
     Landing,
     Input,
     Done,
-    ToDo
+    ToDo,
+    Edit,
+    TaskAdded,
+    TaskUpdated,
+    TaskFinished
   },
   data() {
     return {
-      tasks:[],
-      doneTasks:[]
+      ApiUrl: 'https://powerful-harbor-21413.herokuapp.com' 
     }
-  },
-  mounted() {
-    this.loadTasks()
-    this.loadDoneTasks()
-  },
-  methods: {
-    loadTasks() {
-      fetch("https://cors.io/?https://powerful-harbor-21413.herokuapp.com/todo")
-        .then(response => response.json())
-        .then(response => this.tasks = response)
-    },
-    loadDoneTasks(){
-      fetch("https://cors.io/?https://powerful-harbor-21413.herokuapp.com/done")
-        .then(response => response.json())
-        .then(response => this.doneTasks = response)
-    },
-  }, 
-
+  }
 }
 </script>
 
@@ -62,6 +54,10 @@ export default {
 
 .fade-enter, .fade-leave-active {
   opacity: 0
+}
+
+.faded {
+  color:#444
 }
 
 </style>

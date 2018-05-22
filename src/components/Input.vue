@@ -2,16 +2,17 @@
   <div class="d-flex justify-content-center jumbotron">
     <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
     <div class="card-body">
-      <h4 class="card-title">Add A Task...</h4>
-      <div class="card-text"> 
-        <form @submit.prevent="saveTasks">
+      <h4 class="card-title text-center faded">Add A Task</h4>
+      <div class="card-text text-center"> 
+        <form @submit.prevent="addTask">
           <label for="task">Task: </label>
-          <input type="text" name="task" v-model="task.title"/>
+          <br>
+          <input type="text" name="task" v-model="taskTitle"/>
           <br>
           <br>
           <label for="details">Details: </label>
-          <textarea name="details" rows="4" cols="30" v-model="task.details"></textarea>
-          <input class="btn btn-primary btn-sm" type="submit" name="add" value="Add"/>
+          <textarea name="details" rows="4" cols="30" v-model="taskDetails"></textarea>
+          <input class="btn btn-primary btn-md" type="submit" name="add" value="Add"/>
         </form>
       </div>
     </div>
@@ -22,29 +23,41 @@
 <script>
 export default {
   name: 'Input',
-  props:[
-    'tasks',
-    ],
   data() {
     return{
+      taskTitle: '',
+      taskDetails: '',
       task:{
+        id: '',
         title: '',
         details: '',
         date: ''
       },
     }
   },
+
+  props: ['ApiUrl'],  
+
   methods: {
-    saveTasks() {
-      this.addTask(this.task)
-      this.task = {
-        title: '',
-        details: '',
-        date: ''
-      }
+
+    addTask(){
+      fetch(this.ApiUrl + '/todo', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: this.taskTitle,
+          details: this.taskDetails
+        })
+      })
+      this.taskTitle = ''
+      this.taskDetails = ''
+      this.reRoute()
     },
-    addTask(task) {
-      this.tasks.push(task)
+
+    reRoute(){
+      this.$router.push('TaskAdded')
     }
   }
 };
@@ -54,8 +67,12 @@ export default {
 form, jumbotron {
     display: inline-block;
 }
-.btn {
-  border: 2px solid white;
+.btn-md {
+  border: 2px solid #444;
+  margin-bottom: 10px
+}
+.faded {
+  color:#444
 }
 </style>
 

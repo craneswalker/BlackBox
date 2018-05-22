@@ -8,10 +8,12 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "test": "npx cypress run"
   },
   "dependencies": {
     "chart.js": "^2.7.2",
+    "cypress": "^2.1.0",
     "vue": "^2.5.2",
     "vue-chartjs": "^3.3.1",
     "vue-moment": "^3.2.0",
@@ -70,5 +72,16 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craneswalker/BlackBox.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craneswalker/BlackBox/issues"
+  },
+  "homepage": "https://github.com/craneswalker/BlackBox#readme"
 }

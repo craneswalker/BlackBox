@@ -2,21 +2,26 @@
   <div class="d-flex justify-content-center jumbotron">
     <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
     <div class="card-body">
-      <h4 class="card-title">What Next?</h4>
+      <h4 class="card-title text-center faded">What Next?</h4>
 
-      <div v-if="tasks.todos[0]">
-        <p>(click the task to show details)</p>
+      <div v-if="tasks.todos[0]" class="text-center">
+        <p class="faded">(click the task to show details)</p>
         <h1 @click="descriptionToggle = !descriptionToggle" class="card-title"> 
           <i>{{tasks.todos[0].title}}</i>
         </h1>
         <section :class='{hidden : descriptionToggle}'>
           <p>{{tasks.todos[0].details}}</p>
         </section>
-        <button class="btn btn-primary btn-sm" @click="taskToDone">Task Completed?</button>
+        <button class="btn btn-primary btn-md" @click.prevent="taskToDone">Task Completed?</button>
+        <router-link class="btn btn-primary btn-sm faded" to="/Input">Create Another Task</router-link>
+        <button class="btn btn-primary btn-sm faded" @click="showAllTasks = !showAllTasks">Edit Tasks</button>        
+        <section :class='{hidden : showAllTasks}'>
+          <Edit :tasks ="tasks" :ApiUrl ="ApiUrl"/>
+        </section>
       </div>
-      <div v-else>
+      <div v-else class="text-center">
         <p>(You have no tasks to do right now!)</p>
-        <router-link class="btn btn-primary btn-sm" to="/Input">Make A New Task</router-link>
+        <router-link class="btn btn-primary btn-md" to="/Input">Make A New Task</router-link>
       </div>
 
     </div>
@@ -25,32 +30,45 @@
 </template>
 
 <script>
+import Edit from '@/components/Edit'
+
 var moment = require('moment')
 export default {
   name: 'ToDo',
-  props:[
-      'tasks',
-      'doneTasks'
-  ],
+  components:{
+    Edit,
+    },
   data() {
     return{
-      moment:moment,
       descriptionToggle: true, 
-      doneTask:{
-        title: '',
-        details: '',
-        date: ''
-      },
+      showAllTasks: true,
+      tasks: [],
       task:{
+        id: '',
         title: '',
         details: '',
         date: ''
       },
     }
   },
-  methods:{
+  
+  props: ['ApiUrl'],  
+
+  mounted() {
+    this.loadTasks()
+  }, 
+  
+  methods: {
+    loadTasks() {
+      fetch(this.ApiUrl + '/todo')
+        .then(response => response.json())
+        .then(response => {
+        this.tasks = response
+      })
+    },
+
     taskToDone(){
-      fetch('https://powerful-harbor-21413.herokuapp.com/done', {
+      fetch(this.ApiUrl + '/done', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -58,53 +76,26 @@ export default {
         body: JSON.stringify({
           title: this.tasks.todos[0].title,
           details: this.tasks.todos[0].details,
+          date: moment().format("dddd, MMMM Do")
         })
       })
       this.deleteTask()
-      this.loadTasks()
-      this.loadDoneTasks()
     },
 
     deleteTask(){
-      fetch('https://powerful-harbor-21413.herokuapp.com/todo/1', {
+      let currentId = this.tasks.todos[0].id
+      fetch(this.ApiUrl + `/todo/${currentId}`, {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json',
         }, 
       })
+      this.reRoute()
+    },
+
+    reRoute(){
+      this.$router.push('TaskFinished')
     }
-
-    // taskToDone() {
-    //   fetch("https://cors.io/?https://powerful-harbor-21413.herokuapp.com/done", {
-    //     method: 'POST'
-    //   })
-    //   .then(function(response) {
-    //     tasks.todos
-    //   }).catch(function(err) {
-    //     // Error :(
-    //   });
-    // }
-
-    // taskToDone() {
-    //   const currentDate = moment()
-    //   const formattedDate = currentDate.format('dddd')
-    //   console.log(formattedDate)
-    //   this.copyDoneTask(this.doneTask)
-    //   this.doneTask = {
-    //     title: '',
-    //     details: '',
-    //     date: formattedDate
-    //   },
-    //   this.removeFromTasks(this.tasks)
-    // },
-
-    // copyDoneTask(doneTasks) {
-    //   this.doneTasks.push(this.tasks[0])
-    // },
-
-    // removeFromTasks(tasks) {
-    //   this.tasks.splice(0,1)
-    // }
   }
 }
 </script>
@@ -114,10 +105,14 @@ export default {
   min-height: 311px;
   min-width: 320px;
 }
-.btn {
-  border: 2px solid white;
+.btn-md {
+  border: 2px solid #444;
+  margin-bottom: 10px
 }
 .hidden {
   display: none;
+}
+.faded {
+  color:#444
 }
 </style>

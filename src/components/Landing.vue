@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="jumbotron">
-      <h1 class="display-3">Welcome to BlackBox</h1>
+      <h1 id="title" class="display-3">Welcome to BlackBox</h1>
       <p class="lead d-flex justify-content-center">BlackBox is the simplest to-do app.</p>
       <hr class="my-4">
         <ul class="d-flex justify-content-center">
@@ -11,7 +11,7 @@
         </ul>
       <hr class="my-4">
       <p class="lead d-flex justify-content-center">
-        <router-link class="btn btn-primary btn-lg" to="/Input">Start Your List</router-link>
+        <router-link id="startBtn" class="btn btn-primary btn-lg" to="/Input">Start Your List</router-link>
       </p>
     </div>
     <h2 class="d-flex justify-content-center">What is BlackBox?</h2>
