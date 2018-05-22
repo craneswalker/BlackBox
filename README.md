@@ -15,7 +15,10 @@
 >-Add options for "Daily/Recurring Tasks", "See Next Task" and "Task Priority" (to determine which tasks get seen first)
 
 ## Technologies/Libraries:
->Vue.js and Bootswatch
+>Vue.js, Knex.js, PostgreSql, Moment.js and Bootswatch
+
+## Backend
+[Link to the backend code](https://github.com/craneswalker/blackbox_backend)
 
 
 
