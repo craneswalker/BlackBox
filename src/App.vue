@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      ApiUrl: 'https://powerful-harbor-21413.herokuapp.com' 
+      ApiUrl: 'https://powerful-harbor-21413.herokuapp.com'
     }
   }
 }
@@ -61,3 +61,4 @@ export default {
 }
 
 </style>
+

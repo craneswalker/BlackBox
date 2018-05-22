@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Landing from '@/components/Landing'
+import Landing from '@/components/Landing';
 import Input from '@/components/Input';
 import Done from '@/components/Done';
 import ToDo from '@/components/ToDo';

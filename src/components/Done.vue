@@ -49,7 +49,6 @@ export default {
       fetch(this.ApiUrl + "/done")
         .then(response => response.json())
         .then(response => this.doneTasks = response)
-        .then(() => this.donetasks.reverse())
     }
   }  
 }
@@ -66,3 +65,4 @@ export default {
   color:#444
 }
 </style>
+
