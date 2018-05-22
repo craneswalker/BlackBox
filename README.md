@@ -1,6 +1,6 @@
 # BlackBox
 [Click here to see BlackBox in action](http://black-box-app.surge.sh/#/)
-[BlackBox ]http://adhesive-property.surge.sh/static/img/Blackbox.664eaa6.gif "BlackBox gif"
+![BlackBox](http://adhesive-property.surge.sh/static/img/Blackbox.664eaa6.gif) "BlackBox gif"
 
 ## The simplest to-do list!
 >Plug in your tasks.
